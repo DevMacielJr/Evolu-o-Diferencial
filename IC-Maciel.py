@@ -1,0 +1,37 @@
+
+import math
+import numpy as np
+import np.random ()
+
+def sphere(x):
+  soma = 0
+  for componente in x:
+    soma += componente * componente
+    return soma
+
+
+def rosenbrock(x):
+  soma = 0
+  for i, componente in enumerate(x):
+    if i == 0:
+      continue
+    soma += 100 * (x[i] - x[i-1]*x[i-1])**2 + (x[i-1] - 1)**2
+
+'''np.sum([100(x*j+1 - x*2)**2 + (x*y -1)**2])'''
+
+def rastringin (x):
+  soma = 0
+  for componente in x:
+    soma += componente ** 2 - 10*math.cos(2 * math.pi * componente) + 10
+  return soma
+
+def main():
+  x = np.random.rand(3) * 20 - 10
+  '''Troca o 3 para 30 em seguida'''
+  print (x)
+  print (sphere(x))
+  print (rosenbrock(x))
+  print (rastringin(x))
+
+if __name__ == '__main__':
+  main()
