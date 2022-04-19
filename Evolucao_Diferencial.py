@@ -8,8 +8,7 @@ def sorteia(dim, minimum, maximum):
 
     return lista
 
-
-def ed(dim, x, a, b, c):
+def ed_step(dim, x, a, b, c):
     y = x.copy()
     F = 0.8
     CR = 0.9
@@ -22,29 +21,24 @@ def ed(dim, x, a, b, c):
 
     return y
 
+def populate(pop_size, dim, minimum, maximum):
+    pop = []
+    for i in range(pop_size):
+        pop.append(sorteia(dim, minimum, maximum))
+
+    return pop
 
 def main():
-    dim = (5)
-    x = sorteia(dim, -10, 10)
-    a = sorteia(dim, -10, 10)
-    b = sorteia(dim, -10, 10)
-    c = sorteia(dim, -10, 10)
+    dim = 5
+    pop_size = 4
 
-    print(ed(dim, x, a, b, c))
-    print(x)
-    print(a)
-    print(b)
-    print(c)
+    populacao = populate(pop_size, dim, -10, 10)
 
+    print(populacao)
+
+    y = ed_step(dim, populacao[0], populacao[1], populacao[2], populacao[3])
+
+    print(y)
 
 if __name__ == '__main__':
     main()
-
-
-def populate():
-    pop = 5
-    R = []
-    for i in range(x):
-        R.append(random.choice(range(20)))
-
-    return pop
