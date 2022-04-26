@@ -1,5 +1,6 @@
 import random
 
+
 def sorteia(dim, minimum, maximum):
     lista = []
 
@@ -7,6 +8,7 @@ def sorteia(dim, minimum, maximum):
         lista.append(random.uniform(minimum, maximum))
 
     return lista
+
 
 def ed_step(dim, x, a, b, c):
     y = x.copy()
@@ -21,12 +23,21 @@ def ed_step(dim, x, a, b, c):
 
     return y
 
+
 def populate(pop_size, dim, minimum, maximum):
     pop = []
     for i in range(pop_size):
         pop.append(sorteia(dim, minimum, maximum))
 
     return pop
+
+
+def sphere(x):
+    soma = 0
+    for componente in range(x):
+        soma += componente * componente
+        return soma
+
 
 def main():
     dim = 5
@@ -39,6 +50,7 @@ def main():
     y = ed_step(dim, populacao[0], populacao[1], populacao[2], populacao[3])
 
     print(y)
+
 
 if __name__ == '__main__':
     main()
