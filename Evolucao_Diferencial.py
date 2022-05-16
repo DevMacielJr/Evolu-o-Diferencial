@@ -32,16 +32,16 @@ def populate(pop_size, dim, minimum, maximum):
     return pop
 
 
-def sphere(y):
+def sphere(s):
     soma = 0
-    for componente in range(y):
+    for componente in s:
         soma += componente * componente
         return soma
 
 
 def main():
-    dim = 5
-    pop_size = 4
+    dim = 3  # Dimensões da população
+    pop_size = 10  # Número de população
 
     populacao = populate(pop_size, dim, -10, 10)
 
@@ -54,8 +54,12 @@ def main():
     fitness_y = sphere(y)
     fitness_x = sphere(populacao[0])
 
+    print(f'{fitness_x=} {fitness_y=}')
+
     if fitness_y < fitness_x:
-        pop_size = fitness_y
+        populacao[0] = y
+
+    print(populacao)
 
 
 if __name__ == '__main__':
