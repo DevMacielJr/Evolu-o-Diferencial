@@ -40,8 +40,8 @@ def sphere(s):
 
 
 def main():
-    dim = 3  # Dimensões da população
-    pop_size = 10  # Número de população
+    dim = 3 #Dimensões da população
+    pop_size = 10 #Número de população
 
     populacao = populate(pop_size, dim, -10, 10)
 
@@ -51,6 +51,7 @@ def main():
 
     print(y)
 
+    #Impressão da vetor populacao 0
     fitness_y = sphere(y)
     fitness_x = sphere(populacao[0])
 
@@ -60,6 +61,13 @@ def main():
         populacao[0] = y
 
     print(populacao)
+
+    #Impressao do vetor populacao 1, 2, 3
+
+    fitness_abc = [populacao[1], populacao[2], populacao[3]]
+    print(random.sample(fitness_abc,4))
+
+    
 
 
 if __name__ == '__main__':
