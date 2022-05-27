@@ -9,7 +9,7 @@ def sorteia(dim, minimum, maximum):
 
     return lista
 
-# Função da evolução diferencial.
+# Função do y.
 def get_y(dim, x, a, b, c):
     y = x.copy()
     F = 0.8
@@ -41,7 +41,7 @@ def sphere(s):
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
     dim = 3 #Dimensões da população
-    pop_size = 4 #Número de população
+    pop_size = 10 #Número de população
 
     populacao = populate(pop_size, dim, -10, 10)
 
@@ -54,7 +54,10 @@ def main():
 
     def ed_step():
 
-        populacao = 0;
+        populacao = 0
+        a = get_y()
+        b = get_y()
+        c = get_y()
 
         for idx, x in enumerate(populacao):
             print(f'populacao[{idx}] = {x}')
@@ -69,14 +72,14 @@ def main():
 
             # Impressão da vetor populacao 0
             fitness_y = sphere(y)
-            fitness_x = sphere(x[0])
+            fitness_x = sphere(x[10])
 
             if fitness_y < fitness_x:
                 populacao[idx] = y
 
-    print(y)
+            print(y)
 
-    print(f'{fitness_x=} {fitness_y=}')
+        print(f'{fitness_x=} {fitness_y=}')
 
     print(populacao)
 
