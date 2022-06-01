@@ -36,7 +36,7 @@ def sphere(s):
     soma = 0
     for componente in s:
         soma += componente * componente
-        return soma
+    return soma
 
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
@@ -48,40 +48,36 @@ def main():
     print(populacao)
 
     # Loop de todos os vetores da população.
-
     # Impressao do vetor populacao 1, 2, 3
     # O enumerate irá retornar alguns valores.
 
-    def ed_step():
+def ed_step(populacao, dim):
 
-        populacao = 0
-        a = get_y()
-        b = get_y()
-        c = get_y()
+    for idx, x in enumerate(populacao):
+        print(f'populacao[{idx}] = {x}') # F = Formatar uma string
+        sem_x = populacao[:idx] + populacao[idx+1:]
+        print(sem_x)
+        abc = random.sample(sem_x, 3) # abc cria uma lista abc = {a, b, c}
+        print(abc)
 
-        for idx, x in enumerate(populacao):
-            print(f'populacao[{idx}] = {x}')
-            sem_x = populacao[:idx] + populacao [idx+1:]
-            print(sem_x)
-            abc = random.sample(sem_x, 3)
-            print (abc)
+        # Sorteio com random.sample
+        # X não pode sair nos resultados
+        # get_y criar um vetor novo de y novo, usando a formula.
+        y = get_y(dim, x, abc[0], abc[1], abc[2]) # x não precisa de um compenente pois ele já foi dado
 
-            # Sorteio com random.sample
-            # X não pode sair nos resultados
-            y = get_y(dim, x[0], a[1], b[2], c[3])
+        # Impressão da vetor populacao 0
+        # Compara x é y e imprime o melhor resultado.
+        fitness_y = sphere(y)
+        fitness_x = sphere(x) # O paramêtro foi escolhido pois comparamos com um elemento da população.
 
-            # Impressão da vetor populacao 0
-            fitness_y = sphere(y)
-            fitness_x = sphere(x[10])
+        if fitness_y < fitness_x:
+            populacao[idx] = y
 
-            if fitness_y < fitness_x:
-                populacao[idx] = y
-
-            print(y)
+        print(y)
 
         print(f'{fitness_x=} {fitness_y=}')
-
-    print(populacao)
+        print(populacao)
+    return populacao
 
 if __name__ == '__main__':
     main()
