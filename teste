@@ -1,0 +1,13 @@
+def run_ed(dim, populacao):
+
+  run = []
+  s = 2
+  c = 0
+  
+  while s > 1:
+    populacao = random.random()
+    run = ed_step(dim, populacao)
+    s = sphere(run)
+    c+=1
+
+  return run;
