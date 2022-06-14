@@ -10,7 +10,7 @@ def sorteia(dim, minimum, maximum):
     return lista
 
 # Função da evolução diferencial.
-def ed_step(dim, x, a, b, c):
+def ed_num(dim, x, a, b, c):
     y = x.copy()
     F = 0.8
     CR = 0.9
@@ -20,6 +20,8 @@ def ed_step(dim, x, a, b, c):
         r = random.random()
         if r < CR or i == R:
             y[i] = a[i] + F * (b[i] - c[i])
+
+      
 
     return y
 
@@ -38,6 +40,21 @@ def sphere(s):
         soma += componente * componente
         return soma
 
+def run_ed(populacao, dim, run):
+
+    run = []
+
+    for i in range(populacao, dim):
+        run = ed_step()
+        if run < 1:
+           print(run)
+
+    while run < 1000:
+        run = run + 1
+        print(run)
+
+    return run;
+
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
     dim = 3 #Dimensões da população
@@ -46,11 +63,13 @@ def main():
     populacao = populate(pop_size, dim, -10, 10)
 
     print(populacao)
+    ed_step(populacao, dim)
 
-    # Loop de todos os vetores da população.
+# Loop de todos os vetores da população.
+# Impressao do vetor populacao 1, 2, 3
+# O enumerate irá retornar alguns valores.
+def ed_step(populacao, dim):
 
-    # Impressao do vetor populacao 1, 2, 3
-    # O enumerate irá retornar alguns valores.
     for idx, x in enumerate(populacao):
         print(f'populacao[{idx}] = {x}')
         sem_x = populacao[:idx] + populacao [idx+1:]
@@ -58,18 +77,18 @@ def main():
         abc = random.sample(sem_x, 3)
         print (abc)
 
-    #Sorteio com random.sample
+    # Sorteio com random.sample
     # X não pode sair nos resultados
-    y = ed_step(dim, populacao[0], populacao[1], populacao[2], populacao[3])
+    y = ed_num(dim, populacao[0], populacao[1], populacao[2], populacao[3])
 
-    #Impressão da vetor populacao 0
+    # Impressão da vetor populacao 0
     fitness_y = sphere(y)
     fitness_x = sphere(populacao[0])
 
     if fitness_y < fitness_x:
         populacao[idx] = y
 
-    print(y)
+        print(y)
 
     print(f'{fitness_x=} {fitness_y=}')
 
