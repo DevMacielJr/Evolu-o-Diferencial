@@ -43,15 +43,16 @@ def sphere(s):
 def run_ed(populacao, dim, run):
 
     run = []
+    cont = 0
 
     for i in range(populacao, dim):
         run = ed_step()
         if run < 1:
            print(run)
 
-    while run < 1000:
-        run = run + 1
-        print(run)
+    while cont > 2:
+       cont = cont + 1
+        print(cont)
 
     return run;
 
