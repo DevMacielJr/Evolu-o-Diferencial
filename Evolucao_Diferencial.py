@@ -9,8 +9,8 @@ def sorteia(dim, minimum, maximum):
 
     return lista
 
-# Função da evolução diferencial.
-def ed_num(dim, x, a, b, c):
+# Função do y.
+def get_y(dim, x, a, b, c):
     y = x.copy()
     F = 0.8
     CR = 0.9
@@ -20,8 +20,6 @@ def ed_num(dim, x, a, b, c):
         r = random.random()
         if r < CR or i == R:
             y[i] = a[i] + F * (b[i] - c[i])
-
-      
 
     return y
 
@@ -38,62 +36,62 @@ def sphere(s):
     soma = 0
     for componente in s:
         soma += componente * componente
-        return soma
+    return soma
 
-def run_ed(populacao, dim, run):
-
+def run_ed(dim, populacao):
     run = []
-    cont = 0
-
-    for i in range(populacao, dim):
-        run = ed_step()
-        if run < 1:
-           print(run)
-
-    while cont > 2:
-       cont = cont + 1
-        print(cont)
-
+    s = 2
+    c = 0
+    
+    while s > 1:
+        populacao = random.random()
+        run = ed_step(populacao, dim)
+        s = sphere(run)
+        c+=1
     return run;
+
+    # Loop de todos os vetores da população.
+    # Impressao do vetor populacao 1, 2, 3
+    # O enumerate irá retornar alguns valores.
+
+def ed_step(populacao, dim):
+
+    for idx, x in enumerate(populacao):
+        print(f'populacao[{idx}] = {x}') # F = Formatar uma string
+        sem_x = populacao[:idx] + populacao[idx+1:]
+        print(sem_x)
+        abc = random.sample(sem_x, 3) # abc cria uma lista abc = {a, b, c}
+        print(abc)
+
+        # Sorteio com random.sample
+        # X não pode sair nos resultados
+        # get_y criar um vetor novo de y novo, usando a formula.
+        y = get_y(dim, x, abc[0], abc[1], abc[2]) # x não precisa de um compenente pois ele já foi dado
+
+        # Impressão da vetor populacao 0
+        # Compara x é y e imprime o melhor resultado.
+        fitness_y = sphere(y)
+        fitness_x = sphere(x) # O paramêtro foi escolhido pois comparamos com um elemento da população.
+
+        if fitness_y < fitness_x:
+            populacao[idx] = y
+
+        print(y)
+
+        print(f'{fitness_x=} {fitness_y=}')
+        print(populacao)
+    return populacao
 
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
-    dim = 3 #Dimensões da população
-    pop_size = 4 #Número de população
+    dim = 3 # Dimensões da população
+    pop_size = 10 # Número de população
 
     populacao = populate(pop_size, dim, -10, 10)
 
     print(populacao)
     ed_step(populacao, dim)
-
-# Loop de todos os vetores da população.
-# Impressao do vetor populacao 1, 2, 3
-# O enumerate irá retornar alguns valores.
-def ed_step(populacao, dim):
-
-    for idx, x in enumerate(populacao):
-        print(f'populacao[{idx}] = {x}')
-        sem_x = populacao[:idx] + populacao [idx+1:]
-        print(sem_x)
-        abc = random.sample(sem_x, 3)
-        print (abc)
-
-    # Sorteio com random.sample
-    # X não pode sair nos resultados
-    y = ed_num(dim, populacao[0], populacao[1], populacao[2], populacao[3])
-
-    # Impressão da vetor populacao 0
-    fitness_y = sphere(y)
-    fitness_x = sphere(populacao[0])
-
-    if fitness_y < fitness_x:
-        populacao[idx] = y
-
-        print(y)
-
-    print(f'{fitness_x=} {fitness_y=}')
-
-    print(populacao)
+    run_ed(populacao, dim)
 
 if __name__ == '__main__':
     main()
