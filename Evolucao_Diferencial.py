@@ -95,7 +95,9 @@ def main():
     run_ed(dim, populacao)
 
     a = np.array([populacao, ed_step, run_ed])
+    #Desvio Padrão
     np.std(a)
+    #Média
     np.mean(a)
 
 if __name__ == '__main__':
