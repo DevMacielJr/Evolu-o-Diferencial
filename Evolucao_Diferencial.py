@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 #Função para sortear variáveis aleatórias.
 def sorteia(dim, minimum, maximum):
@@ -40,28 +41,28 @@ def sphere(s):
 
 def run_ed(dim, populacao):
     run = []
-    s = 2
+    s = None
     c = 0
     
-    while s > 1:
-        populacao = random.random()
-        run = ed_step(populacao, dim)
-        s = sphere(run)
+    while s > 0.0000001 or s is None:
+        print(f"função run_ed")
+        populacao = ed_step(dim, populacao)
+        s = min([sphere(x) for x in populacao])
         c+=1
-    return run;
+    return run
 
     # Loop de todos os vetores da população.
     # Impressao do vetor populacao 1, 2, 3
     # O enumerate irá retornar alguns valores.
 
-def ed_step(populacao, dim):
+def ed_step(dim, populacao):
 
     for idx, x in enumerate(populacao):
-        print(f'populacao[{idx}] = {x}') # F = Formatar uma string
+        # print(f'populacao[{idx}] = {x}') # F = Formatar uma string
         sem_x = populacao[:idx] + populacao[idx+1:]
-        print(sem_x)
+        # print(sem_x)
         abc = random.sample(sem_x, 3) # abc cria uma lista abc = {a, b, c}
-        print(abc)
+        # print(abc)
 
         # Sorteio com random.sample
         # X não pode sair nos resultados
@@ -90,8 +91,12 @@ def main():
     populacao = populate(pop_size, dim, -10, 10)
 
     print(populacao)
-    ed_step(populacao, dim)
-    run_ed(populacao, dim)
+    ed_step(dim, populacao)
+    run_ed(dim, populacao)
+
+    a = np.array([populacao, ed_step, run_ed])
+    np.std(a)
+    np.mean(a)
 
 if __name__ == '__main__':
     main()
