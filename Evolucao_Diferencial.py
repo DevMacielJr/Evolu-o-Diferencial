@@ -89,9 +89,12 @@ def ed_step(dim, populacao):
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
     dim = 3 # Dimensões da população
-
+    goal = 0.000001
     #Criar um loop que varia de 10 em 10 ate 100 individuos, criar media e desvio padrão do desvio padrão até optimizar
-    pop_size = 10 # Número de população
+    for pop in range(10, 100):
+        pop_size = 10 # Número de população
+        
+        print(pop_size)
 
 
     for statistics in range(20):
