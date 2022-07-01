@@ -39,17 +39,20 @@ def sphere(s):
         soma += componente * componente
     return soma
 
-def run_ed(dim, populacao):
-    run = []
-    s = None
-    c = 0
+def run_ed(dim, populacao, goal):
+    best_fitness = None
+    steps = 0
     
-    while s > 0.0000001 or s is None:
+    # Ele pega o melhor fitness da função é conta quantas vezes precisou rodar para achar o best_fitness.
+    while best_fitness is None or best_fitness > goal:
         print(f"função run_ed")
         populacao = ed_step(dim, populacao)
-        s = min([sphere(x) for x in populacao])
-        c+=1
-    return run
+        best_fitness = min([sphere(x) for x in populacao])
+        steps += 1
+
+        # Menor número do fitness // min(s)
+
+    return best_fitness, steps
 
     # Loop de todos os vetores da população.
     # Impressao do vetor populacao 1, 2, 3
@@ -86,19 +89,22 @@ def ed_step(dim, populacao):
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
     dim = 3 # Dimensões da população
+
+    #Criar um loop que varia de 10 em 10 ate 100 individuos, criar media e desvio padrão do desvio padrão até optimizar
     pop_size = 10 # Número de população
 
-    populacao = populate(pop_size, dim, -10, 10)
 
-    print(populacao)
-    ed_step(dim, populacao)
-    run_ed(dim, populacao)
+    for statistics in range(20):
+        populacao = populate(pop_size, dim, -10, 10)
+        best_fitness, steps = run_ed(dim, populacao, goal)
 
-    a = np.array([populacao, ed_step, run_ed])
-    #Desvio Padrão
-    np.std(a)
-    #Média
-    np.mean(a)
+    bf = np.array([best_fitness])
+    #Média e Desvio Padrão do pop_size + best_fitness
+    print(f'{pop_size} {np.mean(bf)} {np.std(bf)}')
+
+    st = np.array([steps])
+    #Média e Desvio Padrão do pop_size + steps
+    print(f'{pop_size} {np.mean(st)} {np.std(st)}')
 
 if __name__ == '__main__':
     main()
