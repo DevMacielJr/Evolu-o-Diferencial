@@ -39,13 +39,14 @@ def sphere(s):
         soma += componente * componente
     return soma
 
-def run_ed(dim, populacao, goal):
+def run_ed(dim, populacao, goal, max_steps=1000):
+    
     best_fitness = None
     steps = 0
     
     # Ele pega o melhor fitness da função é conta quantas vezes precisou rodar para achar o best_fitness.
-    while best_fitness is None or best_fitness > goal:
-        print(f"função run_ed")
+    while best_fitness is None or best_fitness > goal and steps < max_steps:
+        #print(f"função run_ed")
         populacao = ed_step(dim, populacao)
         best_fitness = min([sphere(x) for x in populacao])
         steps += 1
@@ -54,9 +55,7 @@ def run_ed(dim, populacao, goal):
 
     return best_fitness, steps
 
-    # Loop de todos os vetores da população.
-    # Impressao do vetor populacao 1, 2, 3
-    # O enumerate irá retornar alguns valores.
+    # Loop de todos os vetores da população. // Impressao do vetor populacao 1, 2, 3 // O enumerate irá retornar alguns valores.
 
 def ed_step(dim, populacao):
 
@@ -80,34 +79,31 @@ def ed_step(dim, populacao):
         if fitness_y < fitness_x:
             populacao[idx] = y
 
-        print(y)
-
-        print(f'{fitness_x=} {fitness_y=}')
-        print(populacao)
+        #print(y)
+        #print(f'{fitness_x=} {fitness_y=}')
+        #print(populacao)
     return populacao
 
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
+    for dim in range(3,)
     dim = 3 # Dimensões da população
     goal = 0.000001
     #Criar um loop que varia de 10 em 10 ate 100 individuos, criar media e desvio padrão do desvio padrão até optimizar
-    for pop in range(10, 100):
-        pop_size = 10 # Número de população
-        
-        print(pop_size)
+    for pop_size in range(10, 100, 10): # Número de população
 
+        best_fitness_list = []
+        steps_list = []
+        for statistics in range(20):
+            populacao = populate(pop_size, dim, -10, 10)
+            best_fitness, steps = run_ed(dim, populacao, goal)
+            best_fitness_list.append(best_fitness)
+            steps_list.append(steps)
 
-    for statistics in range(20):
-        populacao = populate(pop_size, dim, -10, 10)
-        best_fitness, steps = run_ed(dim, populacao, goal)
-
-    bf = np.array([best_fitness])
-    #Média e Desvio Padrão do pop_size + best_fitness
-    print(f'{pop_size} {np.mean(bf)} {np.std(bf)}')
-
-    st = np.array([steps])
-    #Média e Desvio Padrão do pop_size + steps
-    print(f'{pop_size} {np.mean(st)} {np.std(st)}')
+        bf = np.array([best_fitness_list])
+        st = np.array([steps_list])
+        #Média e Desvio Padrão do pop_size + best_fitness + steps
+        print(f'{pop_size} {dim} {np.mean(bf)} {np.std(bf)} {np.mean(st)} {np.std(st)}')
 
 if __name__ == '__main__':
     main()
