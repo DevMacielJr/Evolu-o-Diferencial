@@ -86,24 +86,21 @@ def ed_step(dim, populacao):
 
 # Função principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
-    for dim in range(3,)
-    dim = 3 # Dimensões da população
     goal = 0.000001
-    #Criar um loop que varia de 10 em 10 ate 100 individuos, criar media e desvio padrão do desvio padrão até optimizar
-    for pop_size in range(10, 100, 10): # Número de população
+    for dim in range(5, 30, 5): # Dimensões da população
+        for pop_size in range(10, 100, 10): # Número de população
+            best_fitness_list = []
+            steps_list = []
+            for statistics in range(20):
+                populacao = populate(pop_size, dim, -10, 10)
+                best_fitness, steps = run_ed(dim, populacao, goal)
+                best_fitness_list.append(best_fitness)
+                steps_list.append(steps)
 
-        best_fitness_list = []
-        steps_list = []
-        for statistics in range(20):
-            populacao = populate(pop_size, dim, -10, 10)
-            best_fitness, steps = run_ed(dim, populacao, goal)
-            best_fitness_list.append(best_fitness)
-            steps_list.append(steps)
-
-        bf = np.array([best_fitness_list])
-        st = np.array([steps_list])
-        #Média e Desvio Padrão do pop_size + best_fitness + steps
-        print(f'{pop_size} {dim} {np.mean(bf)} {np.std(bf)} {np.mean(st)} {np.std(st)}')
+            bf = np.array([best_fitness_list])
+            st = np.array([steps_list])
+            #Média e Desvio Padrão do pop_size + best_fitness + steps
+            print(f'{pop_size} {dim} {np.mean(bf)} {np.std(bf)} {np.mean(st)} {np.std(st)}')
 
 if __name__ == '__main__':
     main()
