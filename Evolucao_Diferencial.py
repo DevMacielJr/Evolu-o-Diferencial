@@ -1,7 +1,8 @@
 import random
 import numpy as np
 
-#Função para sortear variáveis aleatórias.
+#Função para sortear variaveis aleatorias.
+
 def sorteia(dim, minimum, maximum):
     lista = []
 
@@ -39,7 +40,7 @@ def sphere(s):
         soma += componente * componente
     return soma
 
-def run_ed(dim, populacao, goal, max_steps=1000):
+def run_ed(dim, populacao, goal, max_steps=10000):
     
     best_fitness = None
     steps = 0
@@ -88,7 +89,7 @@ def ed_step(dim, populacao):
 def main():
     goal = 0.000001
     for dim in range(5, 30, 5): # Dimensões da população
-        for pop_size in range(10, 100, 10): # Número de população
+        for pop_size in range(100, 1000, 100): # Número de população
             best_fitness_list = []
             steps_list = []
             for statistics in range(20):
