@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-#Função para sortear variaveis aleatorias.
+#Funcao para sortear variaveis aleatorias
 
 def sorteia(dim, minimum, maximum):
     lista = []
@@ -11,7 +11,7 @@ def sorteia(dim, minimum, maximum):
 
     return lista
 
-# Função do y.
+# Funcao do y.
 def get_y(dim, x, a, b, c):
     y = x.copy()
     F = 0.8
@@ -25,7 +25,7 @@ def get_y(dim, x, a, b, c):
 
     return y
 
-# Função da população que gera dimensão, máximo é minimo.
+# Funcao da população que gera dimensao, maximo e minimo.
 def populate(pop_size, dim, minimum, maximum):
     pop = []
     for i in range(pop_size):
@@ -33,7 +33,7 @@ def populate(pop_size, dim, minimum, maximum):
 
     return pop
 
-# Função da esfera onde soma componentes
+# Funcao da esfera onde soma componentes
 def sphere(s):
     soma = 0
     for componente in s:
@@ -45,14 +45,14 @@ def run_ed(dim, populacao, goal, max_steps=10000):
     best_fitness = None
     steps = 0
     
-    # Ele pega o melhor fitness da função é conta quantas vezes precisou rodar para achar o best_fitness.
+    # Ele pega o melhor fitness da funcao é conta quantas vezes precisou rodar para achar o best_fitness.
     while best_fitness is None or best_fitness > goal and steps < max_steps:
         #print(f"função run_ed")
         populacao = ed_step(dim, populacao)
         best_fitness = min([sphere(x) for x in populacao])
         steps += 1
 
-        # Menor número do fitness // min(s)
+        # Menor numero do fitness // min(s)
 
     return best_fitness, steps
 
@@ -72,10 +72,10 @@ def ed_step(dim, populacao):
         # get_y criar um vetor novo de y novo, usando a formula.
         y = get_y(dim, x, abc[0], abc[1], abc[2]) # x não precisa de um compenente pois ele já foi dado
 
-        # Impressão da vetor populacao 0
+        # Impressao da vetor populacao 0
         # Compara x é y e imprime o melhor resultado.
         fitness_y = sphere(y)
-        fitness_x = sphere(x) # O paramêtro foi escolhido pois comparamos com um elemento da população.
+        fitness_x = sphere(x) # O parametro foi escolhido pois comparamos com um elemento da populacao.
 
         if fitness_y < fitness_x:
             populacao[idx] = y
@@ -85,11 +85,11 @@ def ed_step(dim, populacao):
         #print(populacao)
     return populacao
 
-# Função principal do código, onde puxa as funções acima para gerar seu resultado.
+# Funcao principal do código, onde puxa as funções acima para gerar seu resultado.
 def main():
     goal = 0.000001
-    for dim in range(5, 30, 5): # Dimensões da população
-        for pop_size in range(100, 1000, 100): # Número de população
+    for dim in range(5, 30, 5): # Dimensoes da população
+        for pop_size in range(100, 1000, 100): # Numero de populacao
             best_fitness_list = []
             steps_list = []
             for statistics in range(20):
@@ -100,7 +100,7 @@ def main():
 
             bf = np.array([best_fitness_list])
             st = np.array([steps_list])
-            #Média e Desvio Padrão do pop_size + best_fitness + steps
+            #Media e Desvio Padrao do pop_size + best_fitness + steps
             print(f'{pop_size} {dim} {np.mean(bf)} {np.std(bf)} {np.mean(st)} {np.std(st)}')
 
 if __name__ == '__main__':
