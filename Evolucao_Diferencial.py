@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-#Função para sortear variaveis aleatorias.
+#Funcao para sortear variaveis aleatorias
 
 def sorteia(dim, minimum, maximum):
     lista = []
