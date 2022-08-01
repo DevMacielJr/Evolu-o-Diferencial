@@ -47,7 +47,7 @@ def run_ed(dim, populacao, goal, max_steps=10000):
     
     # Ele pega o melhor fitness da funcao e conta quantas vezes precisou rodar para achar o best_fitness.
     while best_fitness is None or best_fitness > goal and steps < max_steps:
-        #print(f"função run_ed")
+        #print(f"funcao run_ed")
         populacao = ed_step(dim, populacao)
         best_fitness = min([sphere(x) for x in populacao])
         steps += 1
