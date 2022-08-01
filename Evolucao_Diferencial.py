@@ -25,7 +25,7 @@ def get_y(dim, x, a, b, c):
 
     return y
 
-# Funcao da população que gera dimensao, maximo e minimo.
+# Funcao da populacao que gera dimensao, maximo e minimo.
 def populate(pop_size, dim, minimum, maximum):
     pop = []
     for i in range(pop_size):
