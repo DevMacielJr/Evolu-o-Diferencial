@@ -68,12 +68,12 @@ def ed_step(dim, populacao):
         # print(abc)
 
         # Sorteio com random.sample
-        # X não pode sair nos resultados
+        # X nao pode sair nos resultados
         # get_y criar um vetor novo de y novo, usando a formula.
-        y = get_y(dim, x, abc[0], abc[1], abc[2]) # x não precisa de um compenente pois ele já foi dado
+        y = get_y(dim, x, abc[0], abc[1], abc[2]) # x nao precisa de um compenente pois ele ja foi dado
 
         # Impressao da vetor populacao 0
-        # Compara x é y e imprime o melhor resultado.
+        # Compara x e y e imprime o melhor resultado.
         fitness_y = sphere(y)
         fitness_x = sphere(x) # O parametro foi escolhido pois comparamos com um elemento da populacao.
 
@@ -85,10 +85,10 @@ def ed_step(dim, populacao):
         #print(populacao)
     return populacao
 
-# Funcao principal do código, onde puxa as funções acima para gerar seu resultado.
+# Funcao principal do codigo, onde puxa as funções acima para gerar seu resultado.
 def main():
     goal = 0.000001
-    for dim in range(5, 30, 5): # Dimensoes da população
+    for dim in range(5, 30, 5): # Dimensoes da populacao
         for pop_size in range(100, 1000, 100): # Numero de populacao
             best_fitness_list = []
             steps_list = []
