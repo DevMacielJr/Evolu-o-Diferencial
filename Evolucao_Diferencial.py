@@ -85,7 +85,7 @@ def ed_step(dim, populacao):
         #print(populacao)
     return populacao
 
-# Funcao principal do codigo, onde puxa as funções acima para gerar seu resultado.
+# Funcao principal do codigo, onde puxa as funcoes acima para gerar seu resultado.
 def main():
     goal = 0.000001
     for dim in range(5, 30, 5): # Dimensoes da populacao
