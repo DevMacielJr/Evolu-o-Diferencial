@@ -56,7 +56,7 @@ def run_ed(dim, populacao, goal, max_steps=10000):
 
     return best_fitness, steps
 
-    # Loop de todos os vetores da população. // Impressao do vetor populacao 1, 2, 3 // O enumerate irá retornar alguns valores.
+    # Loop de todos os vetores da populacao. // Impressao do vetor populacao 1, 2, 3 // O enumerate ira retornar alguns valores.
 
 def ed_step(dim, populacao):
 
