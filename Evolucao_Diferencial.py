@@ -102,6 +102,8 @@ def main():
             st = np.array([steps_list])
             #Media e Desvio Padrao do pop_size + best_fitness + steps
             print(f'{pop_size} {dim} {np.mean(bf)} {np.std(bf)} {np.mean(st)} {np.std(st)}')
+            whit open('statistics.dat', 'a') as outfile:
+                print(f'{pop_size} {dim} {np.mean(bf)} {np.std(bf)} {np.mean(st)} {np.std(st)}', file=outfile)
 
 if __name__ == '__main__':
     main()
